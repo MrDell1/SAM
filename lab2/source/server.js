@@ -15,7 +15,8 @@ function videoCancel(){
 app.get('/', (req, res) => {
     response = {  
        videoFile:req.query.videoFile,  
-       audioFile:req.query.audioFile  
+       audioFile:req.query.audioFile,
+       imgFile:req.query.imgFile
    };
    let msg = '';
    if(response.videFile){
