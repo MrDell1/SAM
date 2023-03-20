@@ -7,6 +7,11 @@ function audioCancel(){
     audioPlayer.src="cancel.mp3";
 }
 
+function videoCancel(){
+    const videoCancel = document.getElementById("videoCancel");
+    videoCancel.src="cancel.mp4";
+}
+
 app.get('/', (req, res) => {
     response = {  
        videoFile:req.query.videoFile,  
@@ -14,7 +19,7 @@ app.get('/', (req, res) => {
    };
    let msg = '';
    if(response.videFile){
-   	msg += `<video id="videoPlayer" src=${response.videFile}></video><br>`;
+   	msg += `<video id="videoPlayer" src=${response.videFile}></video><br><button id="videoCancel" onClick="videoCancel()">Video Audio</button><br>`;
    }
    if(response.audioFile){
    	msg += `<audio id="audioPlayer" src=${response.audioFile}></audio><br><button id="audioCancel" onClick="audioCancel()">Cancel Audio</button><br>`;
