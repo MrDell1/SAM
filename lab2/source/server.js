@@ -9,11 +9,14 @@ app.get('/', (req, res) => {
    };
    let msg = '';
    if(response.videFile){
-   	msg = `<video id="videoPlayer" src=${response.videFile}></video>`;
+   	msg += `<video id="videoPlayer" src=${response.videFile}></video><br>`;
    }
    if(response.audioFile){
-   	msg = `<audio id="audioPlayer" src=${response.audioFile}></audio>`;
+   	msg += `<audio id="audioPlayer" src=${response.audioFile}></audio><br>`;
    }
+   if(response.imgFile){
+    msg += `<img id="posterImage" src=${response.imgFile}></img><br>`;
+}
    res.send(msg); 
 })
 
