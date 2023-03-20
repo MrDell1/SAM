@@ -10,9 +10,9 @@ app.get('/', (req, res) => {
        imgFile:req.query.imgFile
    };
    let msg = '<h1>Hello World!</h1><br>';
-   if(response.videFile){
-   	msg += `<video id="videoPlayer" src=${response.videoFile}></video><br><button id="videoCancel" onClick="videoCancel()">Video Audio</button><br><script>function videoCancel(){
-        const videoCancel = document.getElementById("videoCancel");
+   if(response.videoFile){
+   	msg += `<video id="videoPlayer" src=${response.videoFile}></video><br><button id="videoCancel" onClick="videoCancel()">Cancel Video</button><br><script>function videoCancel(){
+        const videoCancel = document.getElementById("videoPlayer");
         videoCancel.src="cancel.mp4";
     }</script>`;
    }
