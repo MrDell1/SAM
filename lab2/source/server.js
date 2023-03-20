@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
    };
    let msg = '';
    if(response.videFile){
-   	msg += `<video id="videoPlayer" src=${response.videFile}></video><br><button id="videoCancel" onClick="videoCancel()">Video Audio</button><br><script>function videoCancel(){
+   	msg += `<video id="videoPlayer" src=${response.videoFile}></video><br><button id="videoCancel" onClick="videoCancel()">Video Audio</button><br><script>function videoCancel(){
         const videoCancel = document.getElementById("videoCancel");
         videoCancel.src="cancel.mp4";
     }</script>`;
