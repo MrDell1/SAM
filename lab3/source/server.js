@@ -81,15 +81,15 @@ app.get('/', (req, res) => {
 
         var newRow = table.insertRow();
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(table_no);
+        var newText = document.createTextNode(${table_no});
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(document.getElementById(id).src);
+        var newText = document.createTextNode(document.getElementById(${id}).src);
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(type);
+        var newText = document.createTextNode(${type});
         newCell.appendChild(newText);
         table_no++
     }
