@@ -2,6 +2,7 @@ const express = require('express')
 
 const app = express()
 
+let table_no = 1;
 
 app.get('/', (req, res) => {
     response = {  
@@ -11,10 +12,31 @@ app.get('/', (req, res) => {
    };
    let msg = '<h1>Hello World!</h1><br>';
    if(response.videoFile){
-   	msg += `<video id="videoPlayer" src=${response.videoFile}></video><br><button id="videoCancel" onClick="videoCancel()">Cancel Video</button><br><script>function videoCancel(){
+   	msg += `<video id="videoPlayer" src=${response.videoFile}></video><br><button id="videoCancel" onClick="videoCancel()">Cancel Video</button>
+       <button id="videoAdd" onClick="videoAdd()">Add video</button>
+    <br><script>
+    function videoCancel(){
         const videoCancel = document.getElementById("videoPlayer");
         videoCancel.src="cancel.mp4";
-    }</script>`;
+    }
+    function videoAdd(){
+        const table = document.getElementById("playlist_table").getElementsByTagName('tbody')[0];
+
+        var newRow = table.insertRow();
+        var newCell = newRow.insertCell();
+        var newText = document.createTextNode(${table_no});
+        newCell.appendChild(newText);
+
+        var newCell = newRow.insertCell();
+        var newText = document.createTextNode(${response.videoFile});
+        newCell.appendChild(newText);
+
+        var newCell = newRow.insertCell();
+        var newText = document.createTextNode("Video");
+        newCell.appendChild(newText);
+        ${table_no++}
+    }
+    </script>`;
    }
    if(response.audioFile){
    	msg += `<audio id="audioPlayer" src=${response.audioFile}></audio><br><button id="audioCancel" onClick="audioCancel()">Cancel Audio</button><br><script>function audioCancel(){
@@ -25,9 +47,8 @@ app.get('/', (req, res) => {
    if(response.imgFile){
     msg += `<img id="posterImage" src=${response.imgFile}></img><br>`;
     }
-    msg += `<table id="playlist_table"><tr><th>No.</th><th>URL</th><th>Type</th></tr>`
+    msg += `<table id="playlist_table"><tr><th>No.</th><th>URL</th><th>Type</th></tr><tbody></tbody></table>`
 
-    msg += "</table>"
    res.send(msg); 
 })
 
