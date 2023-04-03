@@ -65,7 +65,26 @@ app.get('/', (req, res) => {
     </script>`;
    }
    if(response.imgFile){
-    msg += `<img id="posterImage" src=${response.imgFile}></img><br>`;
+    msg += `<img id="posterImage" src=${response.imgFile}></img><br><button id="imgAdd" onClick="imgAdd()">Add image</button> 
+    <script>
+    function imgAdd(){
+        const table = document.getElementById("playlist_table").getElementsByTagName('tbody')[0];
+
+        var newRow = table.insertRow();
+        var newCell = newRow.insertCell();
+        var newText = document.createTextNode(${table_no});
+        newCell.appendChild(newText);
+
+        var newCell = newRow.insertCell();
+        var newText = document.createTextNode(${response.imgFile});
+        newCell.appendChild(newText);
+
+        var newCell = newRow.insertCell();
+        var newText = document.createTextNode("Image");
+        newCell.appendChild(newText);
+        ${table_no++}
+    }
+    </script>`;
     }
     msg += `<table id="playlist_table"><tr><th>No.</th><th>URL</th><th>Type</th></tr><tbody></tbody></table>`
 
