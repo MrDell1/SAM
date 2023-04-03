@@ -39,10 +39,30 @@ app.get('/', (req, res) => {
     </script>`;
    }
    if(response.audioFile){
-   	msg += `<audio id="audioPlayer" src=${response.audioFile}></audio><br><button id="audioCancel" onClick="audioCancel()">Cancel Audio</button><br><script>function audioCancel(){
+   	msg += `<audio id="audioPlayer" src=${response.audioFile}></audio><br><button id="audioCancel" onClick="audioCancel()">Cancel Audio</button>
+       <button id="audioAdd" onClick="audioAdd()">Add audio</button>
+    <br><script>function audioCancel(){
         const audioPlayer = document.getElementById("audioPlayer");
         audioPlayer.src="cancel.mp3";
-    }</script>`;
+    }
+    function audioAdd(){
+        const table = document.getElementById("playlist_table").getElementsByTagName('tbody')[0];
+
+        var newRow = table.insertRow();
+        var newCell = newRow.insertCell();
+        var newText = document.createTextNode(${table_no});
+        newCell.appendChild(newText);
+
+        var newCell = newRow.insertCell();
+        var newText = document.createTextNode(${response.audioFile});
+        newCell.appendChild(newText);
+
+        var newCell = newRow.insertCell();
+        var newText = document.createTextNode("Audio");
+        newCell.appendChild(newText);
+        ${table_no++}
+    }
+    </script>`;
    }
    if(response.imgFile){
     msg += `<img id="posterImage" src=${response.imgFile}></img><br>`;
