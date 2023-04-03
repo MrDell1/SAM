@@ -68,25 +68,32 @@ app.get('/', (req, res) => {
     msg += `<img id="posterImage" src=${response.imgFile}></img><br><button id="imgAdd" onClick="imgAdd()">Add image</button> 
     <script>
     function imgAdd(){
-        const table = document.getElementById("playlist_table").getElementsByTagName('tbody')[0];
-
-        var newRow = table.insertRow();
-        var newCell = newRow.insertCell();
-        var newText = document.createTextNode(${global.table_no});
-        newCell.appendChild(newText);
-
-        var newCell = newRow.insertCell();
-        var newText = document.createTextNode(document.getElementById("posterImage").src);
-        newCell.appendChild(newText);
-
-        var newCell = newRow.insertCell();
-        var newText = document.createTextNode("Image");
-        newCell.appendChild(newText);
-        ${global.table_no++}
+        tableAdd(posterImage, Image);
     }
     </script>`;
     }
     msg += `<table id="playlist_table"><tr><th>No.</th><th>URL</th><th>Type</th></tr><tbody></tbody></table>`
+
+    msg += `<script>
+    let table_no = 1;
+    function tableAdd(id, type){
+        const table = document.getElementById("playlist_table").getElementsByTagName('tbody')[0];
+
+        var newRow = table.insertRow();
+        var newCell = newRow.insertCell();
+        var newText = document.createTextNode(table_no);
+        newCell.appendChild(newText);
+
+        var newCell = newRow.insertCell();
+        var newText = document.createTextNode(document.getElementById(id).src);
+        newCell.appendChild(newText);
+
+        var newCell = newRow.insertCell();
+        var newText = document.createTextNode(type);
+        newCell.appendChild(newText);
+        table_no++
+    }
+    </script>`;
 
    res.send(msg); 
 })
