@@ -24,7 +24,10 @@ app.get('/', (req, res) => {
    }
    if(response.imgFile){
     msg += `<img id="posterImage" src=${response.imgFile}></img><br>`;
-}
+    }
+    msg += `<table id="playlist_table"><tr><th>No.</th><th>URL</th><th>Type</th></tr>`
+
+    msg += "</table>"
    res.send(msg); 
 })
 
