@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(${response.videoFile});
+        var newText = document.createTextNode(document.getElementById("videoPlayer").src);
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(${response.audioFile});
+        var newText = document.createTextNode(document.getElementById("audioPlayer").src);
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
@@ -76,7 +76,7 @@ app.get('/', (req, res) => {
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(${response.imgFile});
+        var newText = document.createTextNode(document.getElementById("posterImage").src);
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
