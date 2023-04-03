@@ -2,7 +2,7 @@ const express = require('express')
 
 const app = express()
 
-let table_no = 1;
+global.table_no = 1;
 
 app.get('/', (req, res) => {
     response = {  
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
         var newRow = table.insertRow();
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(${table_no});
+        var newText = document.createTextNode(${global.table_no});
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
         var newCell = newRow.insertCell();
         var newText = document.createTextNode("Video");
         newCell.appendChild(newText);
-        ${table_no++}
+        ${global.table_no++}
     }
     </script>`;
    }
@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
 
         var newRow = table.insertRow();
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(${table_no});
+        var newText = document.createTextNode(${global.table_no});
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
@@ -60,7 +60,7 @@ app.get('/', (req, res) => {
         var newCell = newRow.insertCell();
         var newText = document.createTextNode("Audio");
         newCell.appendChild(newText);
-        ${table_no++}
+        ${global.table_no++}
     }
     </script>`;
    }
@@ -72,7 +72,7 @@ app.get('/', (req, res) => {
 
         var newRow = table.insertRow();
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(${table_no});
+        var newText = document.createTextNode(${global.table_no});
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
@@ -82,7 +82,7 @@ app.get('/', (req, res) => {
         var newCell = newRow.insertCell();
         var newText = document.createTextNode("Image");
         newCell.appendChild(newText);
-        ${table_no++}
+        ${global.table_no++}
     }
     </script>`;
     }
