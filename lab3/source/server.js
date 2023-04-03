@@ -2,7 +2,6 @@ const express = require('express')
 
 const app = express()
 
-global.table_no = 1;
 
 app.get('/', (req, res) => {
     response = {  
@@ -15,6 +14,7 @@ app.get('/', (req, res) => {
    	msg += `<video id="videoPlayer" src=${response.videoFile}></video><br><button id="videoCancel" onClick="videoCancel()">Cancel Video</button>
        <button id="videoAdd" onClick="videoAdd()">Add video</button>
     <br><script>
+    let table_no = 1;
     function videoCancel(){
         const videoCancel = document.getElementById("videoPlayer");
         videoCancel.src="cancel.mp4";
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
         var newRow = table.insertRow();
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(${global.table_no});
+        var newText = document.createTextNode(table_no);
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
         var newCell = newRow.insertCell();
         var newText = document.createTextNode("Video");
         newCell.appendChild(newText);
-        ${global.table_no++}
+        table_no++
     }
     </script>`;
    }
@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
 
         var newRow = table.insertRow();
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(${global.table_no});
+        var newText = document.createTextNode(table_no);
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
@@ -60,7 +60,7 @@ app.get('/', (req, res) => {
         var newCell = newRow.insertCell();
         var newText = document.createTextNode("Audio");
         newCell.appendChild(newText);
-        ${global.table_no++}
+        table_no++
     }
     </script>`;
    }
@@ -68,32 +68,25 @@ app.get('/', (req, res) => {
     msg += `<img id="posterImage" src=${response.imgFile}></img><br><button id="imgAdd" onClick="imgAdd()">Add image</button> 
     <script>
     function imgAdd(){
-        tableAdd(posterImage, Image);
-    }
-    </script>`;
-    }
-    msg += `<table id="playlist_table"><tr><th>No.</th><th>URL</th><th>Type</th></tr><tbody></tbody></table>`
-
-    msg += `<script>
-    let table_no = 1;
-    function tableAdd(id, type){
         const table = document.getElementById("playlist_table").getElementsByTagName('tbody')[0];
 
         var newRow = table.insertRow();
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(${table_no});
+        var newText = document.createTextNode(table_no);
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(document.getElementById(${id}).src);
+        var newText = document.createTextNode(document.getElementById("posterImage").src);
         newCell.appendChild(newText);
 
         var newCell = newRow.insertCell();
-        var newText = document.createTextNode(${type});
+        var newText = document.createTextNode("Image");
         newCell.appendChild(newText);
         table_no++
     }
     </script>`;
+    }
+    msg += `<table id="playlist_table"><tr><th>No.</th><th>URL</th><th>Type</th></tr><tbody></tbody></table>`
 
    res.send(msg); 
 })
