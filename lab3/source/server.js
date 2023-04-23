@@ -10,7 +10,9 @@ app.get("/", (req, res) => {
   };
   let msg = "<h1>Hello World!</h1><br>";
   msg += `<script>
-   function addToTable(table_no, playerId, type){
+  let table_no = 1;
+
+   function addToTable(playerId, type){
     const table = document.getElementById("playlist_table").getElementsByTagName('tbody')[0];
 
         var newRow = table.insertRow();
@@ -25,20 +27,20 @@ app.get("/", (req, res) => {
         var newCell = newRow.insertCell();
         var newText = document.createTextNode(type);
         newCell.appendChild(newText);
+        table_no++
+
    }
    </script>`;
   if (response.videoFile) {
     msg += `<video id="videoPlayer" src=${response.videoFile}></video><br><button id="videoCancel" onClick="videoCancel()">Cancel Video</button>
        <button id="videoAdd" onClick="videoAdd()">Add video</button>
     <br><script>
-    let table_no = 1;
     function videoCancel(){
         const videoCancel = document.getElementById("videoPlayer");
         videoCancel.src="cancel.mp4";
     }
     function videoAdd(){
-        addToTable(table_no, "videoPlayer", "Video");
-        table_no++
+        addToTable("videoPlayer", "Video");
     }
     </script>`;
   }
@@ -50,21 +52,7 @@ app.get("/", (req, res) => {
         audioPlayer.src="cancel.mp3";
     }
     function audioAdd(){
-        const table = document.getElementById("playlist_table").getElementsByTagName('tbody')[0];
-
-        var newRow = table.insertRow();
-        var newCell = newRow.insertCell();
-        var newText = document.createTextNode(table_no);
-        newCell.appendChild(newText);
-
-        var newCell = newRow.insertCell();
-        var newText = document.createTextNode(document.getElementById("audioPlayer").src);
-        newCell.appendChild(newText);
-
-        var newCell = newRow.insertCell();
-        var newText = document.createTextNode("Audio");
-        newCell.appendChild(newText);
-        table_no++
+      addToTable("audioPlayer", "Audio");
     }
     </script>`;
   }
@@ -72,21 +60,7 @@ app.get("/", (req, res) => {
     msg += `<img id="posterImage" src=${response.imgFile}></img><br><button id="imgAdd" onClick="imgAdd()">Add image</button> 
     <script>
     function imgAdd(){
-        const table = document.getElementById("playlist_table").getElementsByTagName('tbody')[0];
-
-        var newRow = table.insertRow();
-        var newCell = newRow.insertCell();
-        var newText = document.createTextNode(table_no);
-        newCell.appendChild(newText);
-
-        var newCell = newRow.insertCell();
-        var newText = document.createTextNode(document.getElementById("posterImage").src);
-        newCell.appendChild(newText);
-
-        var newCell = newRow.insertCell();
-        var newText = document.createTextNode("Image");
-        newCell.appendChild(newText);
-        table_no++
+      addToTable("posterImage", "Image");
     }
     </script>`;
   }
