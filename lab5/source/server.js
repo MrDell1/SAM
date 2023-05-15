@@ -44,10 +44,8 @@ app.get("/", (req, res) => {
         upButton.innerText = "Up";
         upButton.addEventListener("click", function (){
           var index = this.parentElement.parentElement.rowIndex;
-          console.log(index);
           var rows = document.getElementById("playlist_table").rows, parent=rows[index].
           parentNode;
-          console.log(rows);
           if(index > 1){
             parent.insertBefore(rows[index],rows[index - 1]);
           }
@@ -62,10 +60,8 @@ app.get("/", (req, res) => {
         downButton.innerText = "Down";
         downButton.addEventListener("click", function (){
           var index = this.parentElement.parentElement.rowIndex;
-          console.log(index);
           var rows = document.getElementById("playlist_table").rows, parent=rows[index].
           parentNode;
-          console.log(rows);
           if(index < rows.length - 1){
             parent.insertBefore(rows[index + 1],rows[index]);
           }
@@ -76,7 +72,6 @@ app.get("/", (req, res) => {
         newCell.appendChild(downButton);
 
         table_no++;
-      console.log(newRow);
    }
    </script>`;
   if (response.videoFile) {
