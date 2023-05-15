@@ -51,6 +51,9 @@ app.get("/", (req, res) => {
           if(index > 1){
             parent.insertBefore(rows[index],rows[index - 1]);
           }
+          else{
+            parent.insertBefore(rows[index], rows[rows.length]);
+          }
         })
         newCell.appendChild(upButton);
 
@@ -65,6 +68,9 @@ app.get("/", (req, res) => {
           console.log(rows);
           if(index < rows.length - 1){
             parent.insertBefore(rows[index + 1],rows[index]);
+          }
+          else{
+            parent.insertBefore(rows[index], rows[1]);
           }
         })
         newCell.appendChild(downButton);
