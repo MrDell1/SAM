@@ -39,6 +39,36 @@ app.get("/", (req, res) => {
         var newCell = newRow.insertCell();
         newCell.appendChild(button);
 
+        var upButton = document.createElement('button');
+        upButton.className = "moveRowUpButton";
+        upButton.innerText = "Up";
+        upButton.addEventListener("click", function (){
+          var index = this.parentElement.parentElement.rowIndex;
+          console.log(index);
+          var rows = document.getElementById("playlist_table").rows, parent=rows[index].
+          parentNode;
+          console.log(rows);
+          if(index > 1){
+            parent.insertBefore(rows[index],rows[index - 1]);
+          }
+        })
+        newCell.appendChild(upButton);
+
+        var downButton = document.createElement('button');
+        downButton.className = "moveRowDownButton";
+        downButton.innerText = "Down";
+        downButton.addEventListener("click", function (){
+          var index = this.parentElement.parentElement.rowIndex;
+          console.log(index);
+          var rows = document.getElementById("playlist_table").rows, parent=rows[index].
+          parentNode;
+          console.log(rows);
+          if(index < rows.length - 1){
+            parent.insertBefore(rows[index + 1],rows[index]);
+          }
+        })
+        newCell.appendChild(downButton);
+
         table_no++;
       console.log(newRow);
    }
