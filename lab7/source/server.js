@@ -77,7 +77,7 @@ app.get("/", (req, res) => {
   if (response.videoFile) {
     msg += `<video id="videoPlayer" src=${response.videoFile}></video><br><button id="videoCancel" onClick="videoCancel()">Cancel Video</button>
        <button id="videoAdd" onClick="videoAdd()">Add video</button>
-    <br><script>
+    <br><button id="videoPlay">Play Video</button><br><button id="videoPause">Pause Video</button><script>
     function videoCancel(){
         const videoCancel = document.getElementById("videoPlayer");
         videoCancel.src="cancel.mp4";
