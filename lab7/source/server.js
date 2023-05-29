@@ -90,7 +90,7 @@ app.get("/", (req, res) => {
   if (response.audioFile) {
     msg += `<audio id="audioPlayer" src=${response.audioFile}></audio><br><button id="audioCancel" onClick="audioCancel()">Cancel Audio</button>
        <button id="audioAdd" onClick="audioAdd()">Add audio</button>
-    <br><script>function audioCancel(){
+    <br><button id="audioPlay">Play Audio</button><br><button id="audioPause">Pause Audio</button><script>function audioCancel(){
         const audioPlayer = document.getElementById("audioPlayer");
         audioPlayer.src="cancel.mp3";
     }
