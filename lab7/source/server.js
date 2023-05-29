@@ -77,7 +77,7 @@ app.get("/", (req, res) => {
   if (response.videoFile) {
     msg += `<video id="videoPlayer" src=${response.videoFile}></video><br><button id="videoCancel" onClick="videoCancel()">Cancel Video</button>
        <button id="videoAdd" onClick="videoAdd()">Add video</button>
-    <br><button id="videoPlay">Play Video</button><br><button id="videoPause">Pause Video</button><script>
+    <br><button id="videoPlay" onClick="playVid()">Play Video</button><br><button id="videoPause" onClick="pauseVid()">Pause Video</button><script>
     function videoCancel(){
         const videoCancel = document.getElementById("videoPlayer");
         videoCancel.src="cancel.mp4";
@@ -85,17 +85,35 @@ app.get("/", (req, res) => {
     function videoAdd(){
         addToTable("videoPlayer", "Video");
     }
+    function playVid() {
+      const vid = document.getElementById("videoPlayer");
+      vid.play();
+    }
+  
+    function pauseVid() {
+      const vid = document.getElementById("videoPlayer");
+      vid.pause();
+    }
     </script>`;
   }
   if (response.audioFile) {
     msg += `<audio id="audioPlayer" src=${response.audioFile}></audio><br><button id="audioCancel" onClick="audioCancel()">Cancel Audio</button>
        <button id="audioAdd" onClick="audioAdd()">Add audio</button>
-    <br><button id="audioPlay">Play Audio</button><br><button id="audioPause">Pause Audio</button><script>function audioCancel(){
-        const audioPlayer = document.getElementById("audioPlayer");
+    <br><button id="audioPlay" onClick="playAud()">Play Audio</button><br><button id="audioPause" onClick="pauseAud()">Pause Audio</button><script>function audioCancel(){
+        const audioPlayer = document.getElementById("audioPlayer"); 
         audioPlayer.src="cancel.mp3";
     }
     function audioAdd(){
       addToTable("audioPlayer", "Audio");
+    }
+    function playAud() {
+      const aud = document.getElementById("audioPlayer");
+      aud.play();
+    }
+  
+    function pauseAud() {
+      const aud = document.getElementById("audioPlayer");
+      aud.pause();
     }
     </script>`;
   }
